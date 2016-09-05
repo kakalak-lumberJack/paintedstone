@@ -43,12 +43,14 @@ for number = 1, 15 do
 						description = color.." Stone",
 						tiles = {"paintedstone_stone.png^[colorize:"..hex..":120"},
 						groups = {cracky = 3},
+						sounds = default.node_sound_stone_defaults()
 			})
 
 			minetest.register_node("paintedstone:"..color.."_stone_brick", {
 						description = color.." Stone Brick",
 						tiles = {"paintedstone_stone_brick.png^[colorize:"..hex..":120"},
 						groups = {cracky = 3},
+						sounds = default.node_sound_stone_defaults()
 			})
 
 
@@ -68,21 +70,61 @@ for number = 1, 15 do
 									'dye:'..color, 'default:stonebrick',
 						}
 			})
-
---Stairsplus support
-			stairsplus:register_all("paintedstone", color, "paintedstone:"..color.."_stone", {
-								description = color.."Stone",
-								tiles = {"paintedstone_stone.png^[colorize:"..hex..":120"},
-								groups = {cracky = 3},
-			})
-
-			stairsplus:register_all("paintedstone", color, "paintedstone:"..color.."_stone_brick", {
-								description = color.."Stone Brick",
-								tiles = {"paintedstone_stone_brick.png^[colorize:"..hex..":120"},
-								groups = {cracky = 3},
-			})
 end
+--Stairsplus support
 
+if minetest.get_modpath("moreblocks") ~= nil then
+
+				for number = 1, 15 do
+
+								local color = COLORS[number]
+								local hex = HEXCODES[number]
+
+
+								stairsplus:register_all("paintedstone", color.."_stone", "paintedstone:"
+								..color.."_stone", {
+												description = color.." Stone",
+												tiles = {"paintedstone_stone.png^[colorize:"..hex..":120"},
+												groups = {cracky = 3},
+												sounds = default.node_sound_stone_defaults(),
+								})
+
+								stairsplus:register_all("paintedstone", color.. "_stone_brick", "paintedstone:"
+								..color.."_stone_brick", {
+													description = color.." Stone Brick",
+													tiles = {"paintedstone_stone_brick.png^[colorize:"..hex..":120"},
+													groups = {cracky = 3},
+													sounds = default.node_sound_stone_defaults(),
+									})
+					end
+
+else
+				for number = 1, 15 do
+
+									local color = COLORS[number]
+									local hex = HEXCODES[number]
+
+									stairs.register_stair_and_slab(
+													color.."_painted_stone",
+													"paintedstone:"..color.."_stone",
+													{cracky = 3},
+													{"paintedstone_stone.png^[colorize:"..hex..":120"},
+													color.." stone stair",
+													color.." stone slab",
+													default.node_sound_stone_defaults()
+													)
+
+										stairs.register_stair_and_slab(
+														color.."_painted_stone_brick",
+														"paintedstone:"..color.."_stone_brick",
+														{cracky = 3},
+														{"paintedstone_stone_brick.png^[colorize:"..hex..":120"},
+														color.." stone brick stair",
+														color.." stone brick slab",
+														default.node_sound_stone_defaults()
+														)
+					end
+end
 
 minetest.register_alias("dye:dark_blue","dye:blue")
 minetest.register_alias("dye:dark_pink","dye:magenta")
