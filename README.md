@@ -1,5 +1,5 @@
 # paintedstone
-Minetest Mod colorizing the default stone and stone brick textures. 
+Minetest Mod colorizing the default stone, stone brick and steel block textures. 
 
 # Credit
 Some code inspired from CraigyDavi Coloured Stone Brick Mod (WTFPL)
