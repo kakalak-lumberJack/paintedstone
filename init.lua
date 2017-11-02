@@ -45,10 +45,11 @@ for _, val in ipairs(colors) do
 --Register Glass	
 	minetest.register_node("paintedstone:"..color.."_glow_glass",{
 		description = Color.." Glow Glass Block",
-		tiles = {"paintedstone_glow_glass.png^[colorize:"..hex..":120"},
+		tiles = {"paintedstone_glow_glass.png^[colorize:"..hex..":120^[opacity:145"},
 		drawtype = "glasslike_framed_optional",
 		paramtype = "light",
 		sunlight_propogates = true,
+		use_texture_alpha = true,
 		light_source = 14,
 		groups = {snappy = 2, cracky = 3, oddly_breakable_by_hand = 3},
 		sounds = default.node_sound_glass_defaults()
@@ -165,7 +166,7 @@ if minetest.get_modpath("moreblocks") ~= nil then
 		stairsplus:register_all("paintedstone", color.."_glow_glass", "paintedstone:"
 		..color.."_glow_glass", {
 			description = Color.." Glow Glass",
-			tiles = {"paintedstone_glow_glass.png^[colorize:"..hex..":120"},
+			tiles = {"paintedstone_glow_glass.png^[colorize:"..hex..":120^[opacity:145"},
 			paramtype = "light",
 			groups = {snappy = 2, cracky = 3, oddly_breakable_by_hand = 3},
 			sunlight_propogates = true,
@@ -215,7 +216,7 @@ elseif
 			color.."_glow_glass",
 			"paintedstone:"..color.."_glow_glass",
 			{snappy = 2, cracky = 3, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
-			{"paintedstone_glow_glass.png^[colorize:"..hex..":120"},
+			{"paintedstone_glow_glass.png^[colorize:"..hex..":120^[opacity:145"},
 			Color.." Glow Glass Stair",
 			Color.." Glow Glass Slab",
 			default.node_sound_glass_defaults()
